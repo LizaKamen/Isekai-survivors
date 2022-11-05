@@ -14,28 +14,38 @@ public class Attack : MonoBehaviour
     [SerializeField]
     private float attackHeight;
     [SerializeField]
-    private BoxCollider2D collider2D;
+    private Transform playerPos;
+    [SerializeField]
+    private Vector2 atkOffset;
+    [SerializeField]
+    private LayerMask enemyLayers;
+    private Collider2D[] enemiesHit;
     private void Start()
     {
-        collider2D.enabled = false;
-        collider2D = gameObject.GetComponent<BoxCollider2D>();
-        collider2D.size = new Vector2(attackWidth, attackHeight);
+        playerPos = gameObject.GetComponent<Transform>();
         StartCoroutine(DoAttack());
     }
     IEnumerator DoAttack()
     {
         while (true)
         {
-            collider2D.enabled = true;
-            Debug.Log(collider2D.enabled.ToString());
-            yield return new WaitForEndOfFrame();
-            collider2D.enabled = false;
-            Debug.Log(collider2D.enabled.ToString());
+            Debug.Log("yy");
+            var pointA = new Vector2(playerPos.position.x, playerPos.position.y) + atkOffset;
+            var pointB = pointA + new Vector2(attackWidth, attackHeight);
+            enemiesHit = Physics2D.OverlapAreaAll(pointA,pointB,enemyLayers);
+            Debug.Log($"{pointA},{pointB}");
+            foreach (var item in enemiesHit)
+            {
+                Debug.Log("hit!");
+                item.GetComponent<EnemyController>().TakeDamage(damage);
+            }
             yield return new WaitForSeconds(attackDelay);
         }
     }
-    private void OnTriggerEnter2D()
+    private void OnDrawGizmosSelected()
     {
-        Debug.Log("hit!");
+        var pointA = new Vector2(playerPos.position.x, playerPos.position.y) + 2 * atkOffset;
+
+        Gizmos.DrawCube(pointA, new Vector2(attackWidth, attackHeight));
     }
 }
