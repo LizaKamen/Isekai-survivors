@@ -15,6 +15,7 @@ public class CameraSettings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = playerGO.transform.position + camOffset;
+        if (playerGO != null)
+            transform.position = playerGO.transform.position + camOffset;
     }
 }

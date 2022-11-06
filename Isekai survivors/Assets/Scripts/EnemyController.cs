@@ -7,6 +7,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private float maxHP;
     private float currentHP;
+    [SerializeField]
+    private float damage;
+    [SerializeField]
+    private GameObject expPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +26,14 @@ public class EnemyController : MonoBehaviour
     }
     void Die()
     {
+        var thisPos = new Vector3(transform.position.x, transform.position.y);
         Destroy(gameObject);
+        Instantiate(expPoint, thisPos, Quaternion.identity);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
     }
 
 }
