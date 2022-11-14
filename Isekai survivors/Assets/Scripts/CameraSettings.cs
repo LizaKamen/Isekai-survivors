@@ -13,7 +13,7 @@ public class CameraSettings : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (playerGO != null)
             transform.position = playerGO.transform.position + camOffset;

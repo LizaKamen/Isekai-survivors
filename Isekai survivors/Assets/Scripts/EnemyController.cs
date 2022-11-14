@@ -11,10 +11,13 @@ public class EnemyController : MonoBehaviour
     private float damage;
     [SerializeField]
     private GameObject expPoint;
+    [SerializeField]
+    private UIManager manager;
     // Start is called before the first frame update
     void Start()
     {
         currentHP = maxHP;
+        manager = GameObject.Find("Canvas").GetComponent<UIManager>();
     }
     public void TakeDamage(float dmg)
     {
@@ -28,12 +31,16 @@ public class EnemyController : MonoBehaviour
     {
         var thisPos = new Vector3(transform.position.x, transform.position.y);
         Destroy(gameObject);
+        manager.UpdateScore();
         Instantiate(expPoint, thisPos, Quaternion.identity);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
+        if (collision.gameObject.GetComponent<PlayerController>() != null)
+        {
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
+        }
     }
 
 }
