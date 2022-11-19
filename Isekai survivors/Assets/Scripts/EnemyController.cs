@@ -1,23 +1,20 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField]
-    private float maxHP;
+    [SerializeField] private float maxHP;
+    [SerializeField] private float speed;
+    [SerializeField] private float damage;
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject expPoint;
+    [SerializeField] private UIManager manager;
     private float currentHP;
-    [SerializeField]
-    private float damage;
-    [SerializeField]
-    private GameObject expPoint;
-    [SerializeField]
-    private UIManager manager;
-    // Start is called before the first frame update
     void Start()
     {
         currentHP = maxHP;
         manager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        player = GameObject.Find("Player");
     }
     public void TakeDamage(float dmg)
     {
@@ -34,7 +31,10 @@ public class EnemyController : MonoBehaviour
         manager.UpdateScore();
         Instantiate(expPoint, thisPos, Quaternion.identity);
     }
-
+    void Update()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<PlayerController>() != null)
@@ -42,5 +42,4 @@ public class EnemyController : MonoBehaviour
             collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
         }
     }
-
 }

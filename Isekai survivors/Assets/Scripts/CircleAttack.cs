@@ -1,11 +1,35 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CircleAttack
+public class CircleAttack : MonoBehaviour
 {
-    protected IEnumerator DoAttack()
+    [SerializeField] bool switcher;
+    [SerializeField] int lvl;
+    [SerializeField] private float damage;
+    [SerializeField] private float attackRadius;
+    [SerializeField] private float attackDelay;
+    [SerializeField] private LayerMask enemyLayers;
+    [SerializeField] private Transform playerPos;
+    private Collider2D[] enemiesHit;
+    void Start()
     {
-        throw new System.NotImplementedException();
+        switcher = true;
+        StartCoroutine(DoAttack());
+    }
+    private IEnumerator DoAttack()
+    {
+        while (switcher)
+        {
+            enemiesHit = Physics2D.OverlapCircleAll(playerPos.position, attackRadius, enemyLayers);
+            foreach (var item in enemiesHit)
+            {
+                item.GetComponent<EnemyController>().TakeDamage(damage);
+            }
+            yield return new WaitForSeconds(attackDelay);
+        }
+    }
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawSphere(playerPos.position, attackRadius);
     }
 }

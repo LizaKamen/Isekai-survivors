@@ -1,29 +1,24 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RectAttack : MonoBehaviour
 {
-    [SerializeField]
-    private float attackWidth;
-    [SerializeField]
-    private float attackHeight;
-    [SerializeField]
-    private Vector2 atkOffset;
-    [SerializeField]
-    private float damage;
-    [SerializeField]
-    private float attackDelay;
-    [SerializeField]
-    private GameObject player;
-    [SerializeField]
-    private LayerMask enemyLayers;
+    [SerializeField] bool switcher;
+    [SerializeField] int lvl;
+    [SerializeField] private float attackWidth;
+    [SerializeField] private float attackHeight;
+    [SerializeField] private Vector2 atkOffset;
+    [SerializeField] private float damage;
+    [SerializeField] private float attackDelay;
+    [SerializeField] private GameObject player;
+    [SerializeField] private LayerMask enemyLayers;
     private Collider2D[] enemiesHit;
     private Transform playerPos;
     private PlayerMovement pMov;
 
     private void Start()
     {
+        switcher = true;
         playerPos = player.GetComponent<Transform>();
         pMov = player.GetComponent<PlayerMovement>();
         StartCoroutine(DoAttack());
@@ -32,7 +27,7 @@ public class RectAttack : MonoBehaviour
     {
         Vector2 pointA;
         Vector2 pointB;
-        while (true)
+        while (switcher)
         {
             if (pMov.facingRight == false)
             {
@@ -45,7 +40,6 @@ public class RectAttack : MonoBehaviour
                 pointB = pointA + new Vector2(attackWidth, attackHeight);
             }
             enemiesHit = Physics2D.OverlapAreaAll(pointA, pointB, enemyLayers);
-            Debug.Log($"{pointA},{pointB}");
             foreach (var item in enemiesHit)
             {
                 item.GetComponent<EnemyController>().TakeDamage(damage);

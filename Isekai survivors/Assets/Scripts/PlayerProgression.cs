@@ -1,13 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerProgression : MonoBehaviour
 {
-    [SerializeField]
-    private int lvl = 1;
-    [SerializeField]
-    public float expToNextLvl = 1000;
+    [SerializeField] private int lvl = 1;
+    [SerializeField] public float expToNextLvl = 1000;
     public float currentExp;
     private UIManager manager;
 
