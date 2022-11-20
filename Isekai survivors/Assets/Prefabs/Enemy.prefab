@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 10
-  speed: 25
+  speed: 5
   damage: 10
   player: {fileID: 0}
   expPoint: {fileID: 7027438859637382136, guid: 5e07b66e889e0cf489b2700079ebd99c, type: 3}

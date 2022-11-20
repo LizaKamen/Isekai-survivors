@@ -4,18 +4,15 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] enemies;
-    GameObject prefabInstance;
-    [SerializeField] private GameObject player;
     [SerializeField] private float externalR = 100f;
     [SerializeField] private float internalR = 80f;
     [SerializeField] private float spawnRate;
     [SerializeField] private float amountOfENemiesSpawn;
-    bool onSpawner;
+    public bool onSpawner;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
         onSpawner = true;
         StartCoroutine(CreateEnemy());
     }
@@ -59,16 +56,7 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
             var spawnPos = new Vector3(posX, posY) + transform.position;
-            prefabInstance = Instantiate(enemy, spawnPos, q);
-            //if (prefabInstance != null)
-            //{
-            //    var myScript = prefabInstance.GetComponent<EnemyController>();
-            //    if (myScript != null)
-            //    {
-            //        StartCoroutine(EnemyController.Move(player, myScript));
-            //    }
-            //}
-
+            Instantiate(enemy, spawnPos, q);
             switcher = !switcher;
             yield return new WaitForSeconds(spawnRate);
         }
