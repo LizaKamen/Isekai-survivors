@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class ArrowAttack : MonoBehaviour
 {
@@ -55,18 +53,6 @@ public class ArrowAttack : MonoBehaviour
         while (switcher)
         {
             attack.enabled = false;
-            //enemiesHit = null;
-            //if (enemyToAttack != null && sqrClosestDistance <= range)
-            //{
-            //    enemiesHit = new Collider2D[1];
-            //    Physics2D.OverlapCollider(attack, new ContactFilter2D().NoFilter(), enemiesHit);
-            //    enemyToAttack = null;
-            //    foreach (var item in enemiesHit)
-            //    {
-            //        item.GetComponent<EnemyController>().TakeDamage(damage);
-            //    }
-            //    sqrClosestDistance = Mathf.Infinity;
-            //}
             yield return new WaitForSeconds(attackDelay);
             attack.enabled = true;
             yield return new WaitForFixedUpdate();

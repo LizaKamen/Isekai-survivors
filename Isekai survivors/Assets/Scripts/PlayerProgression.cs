@@ -19,7 +19,6 @@ public class PlayerProgression : MonoBehaviour
         {
             LvlUp();
         }
-        
     }
     void LvlUp()
     {
