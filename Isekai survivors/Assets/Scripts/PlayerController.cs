@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float maxHP;
     [SerializeField] private UIManager manager;
-    private float currentHP;
+    [SerializeField] private float currentHP;
 
     private void Start()
     {
@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         currentHP -= dmg;
+        Debug.Log(currentHP);
         if (currentHP <= 0)
         {
             Die();
