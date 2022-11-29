@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float movementSpeed = 5f;
+    [SerializeField] private float movementSpeed = 5f;
+    [SerializeField] Animator animator; 
     private float horizontalInput;
     private float verticalInput;
     public bool facingRight = true;
-    private Vector3 scale; 
+    private Vector3 scale;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
             facingRight = true;
         }
         verticalInput = Input.GetAxis("Vertical");
+        animator.SetFloat("Speed", Mathf.Abs(verticalInput + horizontalInput));
         transform.Translate(new Vector3(Time.deltaTime * movementSpeed * horizontalInput, Time.deltaTime * movementSpeed * verticalInput));
     }
     void Flip()

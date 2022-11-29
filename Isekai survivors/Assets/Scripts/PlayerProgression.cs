@@ -1,9 +1,10 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerProgression : MonoBehaviour
 {
     [SerializeField] private int lvl = 1;
-    [SerializeField] public float expToNextLvl = 1000;
+    [SerializeField] public float expToNextLvl = 100;
     public float currentExp;
     private UIManager manager;
 
@@ -17,13 +18,7 @@ public class PlayerProgression : MonoBehaviour
     {
         if (currentExp >= expToNextLvl)
         {
-            LvlUp();
+            manager.Setup(true);
         }
-    }
-    void LvlUp()
-    {
-        lvl++;
-        currentExp = 0;
-        manager.UpdateLevel(lvl);
     }
 }

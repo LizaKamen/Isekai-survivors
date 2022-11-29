@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6539539438071659339}
   - component: {fileID: 8960223237314163146}
   - component: {fileID: 4668815990460406347}
-  - component: {fileID: 5306100906790872366}
+  - component: {fileID: 5568940103504999852}
   m_Layer: 12
-  m_Name: Enemy 1
+  m_Name: Big Guy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7031930229993934838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.7944, y: -0.2144, z: 0}
-  m_LocalScale: {x: 2.5977, y: 2.5977, z: 2.5977}
+  m_LocalScale: {x: 5, y: 5, z: 2.5977}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 1790744033
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b7c9ee69eb8520d4abbc657341fa8aec, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3716ec84f46ac6d48adb2e6eb2485313, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,7 +103,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.13
+  m_Radius: 0.18
 --- !u!114 &8960223237314163146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,8 +116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442aab0cbab7d3948953a7376ecf5efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 10
-  speed: 3
+  maxHP: 30
+  speed: 1
   damage: 10
   player: {fileID: 0}
   expPoint: {fileID: 7027438859637382136, guid: 5e07b66e889e0cf489b2700079ebd99c, type: 3}
@@ -143,7 +143,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!95 &5306100906790872366
+--- !u!95 &5568940103504999852
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ Animator:
   m_GameObject: {fileID: 7031930229993934838}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 67a811723ba2d144a8a1809769356645, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5a7887a8497f2704b9d32cd803158ad0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

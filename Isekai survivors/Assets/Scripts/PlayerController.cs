@@ -11,11 +11,12 @@ public class PlayerController : MonoBehaviour
     {
         manager = GameObject.Find("Canvas").GetComponent<UIManager>();
         currentHP = maxHP;
+        manager.UpdateLevel((int)currentHP);
     }
     public void TakeDamage(float dmg)
     {
         currentHP -= dmg;
-        Debug.Log(currentHP);
+        manager.UpdateLevel((int)currentHP);
         if (currentHP <= 0)
         {
             Die();
@@ -23,7 +24,7 @@ public class PlayerController : MonoBehaviour
     }
     void Die()
     {
-        manager.Setup();
+        manager.Setup(false);
         Destroy(gameObject);
     }
 }

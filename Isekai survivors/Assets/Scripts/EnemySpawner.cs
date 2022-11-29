@@ -24,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
         {
             var posX = 0f;
             var posY = 0f;
-            var enemy = enemies[Random.Range(0, enemies.Length - 1)];
+            var enemy = enemies[Random.Range(0, enemies.Length)];
             if (switcher)
             {
                 posX = Random.Range(-externalR, externalR);

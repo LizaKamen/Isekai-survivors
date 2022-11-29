@@ -7,12 +7,10 @@ public class CameraSettings : MonoBehaviour
     [SerializeField]
     private GameObject playerGO;
     private Vector3 camOffset = new Vector3(0, 0, -10);
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        Time.timeScale = 1;
     }
-
-    // Update is called once per frame
     void LateUpdate()
     {
         if (playerGO != null)

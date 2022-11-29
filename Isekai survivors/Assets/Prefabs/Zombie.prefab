@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4668815990460406347}
   - component: {fileID: 5306100906790872366}
   m_Layer: 12
-  m_Name: Enemy
+  m_Name: Zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7031930229993934838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.7944, y: -0.2144, z: 0}
-  m_LocalScale: {x: 2.5977, y: 2.5977, z: 2.5977}
+  m_LocalScale: {x: 4, y: 4, z: 2.5977}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -117,8 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 10
-  speed: 3
-  damage: 10
+  speed: 2
+  damage: 5
   player: {fileID: 0}
   expPoint: {fileID: 7027438859637382136, guid: 5e07b66e889e0cf489b2700079ebd99c, type: 3}
   manager: {fileID: 0}

@@ -22,6 +22,7 @@ public class RectAttack : MonoBehaviour
         playerPos = player.GetComponent<Transform>();
         pMov = player.GetComponent<PlayerMovement>();
         StartCoroutine(DoAttack());
+        StartCoroutine(AttackAnim());
     }
     IEnumerator DoAttack()
     {
@@ -47,11 +48,16 @@ public class RectAttack : MonoBehaviour
             yield return new WaitForSeconds(attackDelay);
         }
     }
-    private void OnDrawGizmosSelected()
+    IEnumerator AttackAnim()
     {
-        var pointA = new Vector2(gameObject.transform.position.x + atkOffset.x + attackWidth / 2, gameObject.transform.position.y + atkOffset.y + attackHeight / 2);
+        while (switcher)
+        {
+            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            yield return new WaitForSeconds(0.05f);
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            yield return new WaitForSeconds(attackDelay - 0.05f);
+        }
 
-        Gizmos.DrawCube(pointA, new Vector2(attackWidth, attackHeight));
     }
 
 }
